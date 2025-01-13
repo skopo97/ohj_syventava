@@ -1,15 +1,38 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.Scanner;
+import java.lang.Math;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        int satunnainenLuku = (int) (Math.random() * 100 + 1);
+        int arvaukset = 0;
+        Scanner lukija = new Scanner(System.in);
+
+        System.out.println("Luku on " + satunnainenLuku);
+
+        System.out.println("Tervetuloa peliin! Arvaa luku väliltä 1-100.");
+        System.out.println("Arvauksia jäljellä: " + (arvaukset + 7));
+
+        do {
+            int arvaus = lukija.nextInt();
+
+            if(arvaus < satunnainenLuku){
+                System.out.println("Arvaamasi luku on pienempi kuin oikea luku.");
+                System.out.println("Arvauksia jäljellä: " + (6 - arvaukset));
+            }
+            else if(arvaus > satunnainenLuku) {
+                System.out.println("Arvaamasi luku on suurempi kuin oikea luku.");
+                System.out.println("Arvauksia jäljellä: " + (6 - arvaukset));
+            }
+            else {
+                System.out.println("Onneksi olkoon! Arvasit oikein!");
+                break;
+            }
+            arvaukset++;
+
+        }while (arvaukset < 7);
+
+        System.out.println("Hävisit pelin, oikea luku oli " + satunnainenLuku);
+
     }
-}untitled
+}
