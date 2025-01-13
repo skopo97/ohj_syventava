@@ -1,16 +1,12 @@
 import java.util.Scanner;
-import java.lang.Math;
 
 public class Main {
     public static void main(String[] args) {
 
-        int satunnainenLuku = (int) (Math.random() * 100 + 1);
-        int arvaukset = 0;
         Scanner lukija = new Scanner(System.in);
-
-        System.out.println("Luku on " + satunnainenLuku);
-
+        int satunnainenLuku = (int) (Math.random() * 100 + 1);
         System.out.println("Tervetuloa peliin! Arvaa luku väliltä 1-100.");
+        int arvaukset = 0;
         System.out.println("Arvauksia jäljellä: " + (arvaukset + 7));
 
         do {
