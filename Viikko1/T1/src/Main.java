@@ -6,7 +6,6 @@ public class Main {
         Scanner lukija = new Scanner(System.in);
 
         int satunnainenLuku = (int) (Math.random() * 100 + 1);
-        System.out.print(satunnainenLuku);
         System.out.println("Tervetuloa peliin! Arvaa luku väliltä 1-100.");
         int arvauksetMaksimi = 7;
         int arvaukset = 0;
