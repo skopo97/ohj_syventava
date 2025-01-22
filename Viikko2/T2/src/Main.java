@@ -1,5 +1,5 @@
+import java.time.DateTimeException;
 import java.time.LocalDate;
-import java.time.format.DateTimeParseException;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,22 +11,26 @@ public class Main {
                     " Use export BIRTHDATE=YYYY-MM-DD");
             return;
         }
+        //Tehdään nykyhetkestä LocalDate olio
+        LocalDate currentDate = LocalDate.now();
+
         LocalDate birthDate;
         try {
             //Yritetään tehdä annetusta stringistä LocalDate olio, jos ei onnistu niin tulostetaan virheilmoitus.
             birthDate = LocalDate.parse(birthDay);
-            if (birthDate.getYear() < 1910 || birthDate.getYear() > 2025) {
+            if (birthDate.getYear() < 1910 || birthDate.getYear() > currentDate.getYear()) {
                 System.out.println("Invalid year, please use year between 1910 and the current year");
                 return;
             }
-
-        } catch (DateTimeParseException dtpe) {
-            System.err.println("Invalid format for BIRTHDAY, use export BIRTHDATE=YYYY-MM-DD");
+            if (birthDate.isAfter(currentDate)) {
+                System.out.println("Invalid date, please use a date before the current date");
+                return;
+            }
+        } catch (DateTimeException dte) {
+            System.err.println("Invalid date or formatting for BIRTHDAY, please use a valid date");
             return;
         }
 
-        //Tehdään nykyhetkestä LocalDate olio
-        LocalDate currentDate = LocalDate.now();
         if (birthDate.getMonth() == currentDate.getMonth() && birthDate.getDayOfMonth() == currentDate.getDayOfMonth()) {
             System.out.println("Happy Birthday!");
         } else {
