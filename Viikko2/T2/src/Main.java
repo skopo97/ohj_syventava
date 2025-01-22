@@ -1,10 +1,10 @@
 import java.time.DateTimeException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 public class Main {
     public static void main(String[] args) {
         String birthDay = System.getenv("BIRTHDATE");
-
 
         if (birthDay == null) {
             System.out.println("Please set the BIRTHDATE environment variable in format YYYY-MM-DD." +
@@ -23,18 +23,24 @@ public class Main {
                 return;
             }
             if (birthDate.isAfter(currentDate)) {
-                System.out.println("Invalid date, please use a date before the current date");
+                System.out.println("Invalid birthdate, the date can't be in the future");
                 return;
             }
         } catch (DateTimeException dte) {
             System.err.println("Invalid date or formatting for BIRTHDAY, please use a valid date");
             return;
         }
-
         if (birthDate.getMonth() == currentDate.getMonth() && birthDate.getDayOfMonth() == currentDate.getDayOfMonth()) {
             System.out.println("Happy Birthday!");
         } else {
             System.out.println("Sorry, it's not your birthday yet");
+        }
+
+        int daysBetween = (int) ChronoUnit.DAYS.between(birthDate, currentDate);
+        System.out.println("You are " + daysBetween + " days old!");
+
+        if (daysBetween % 1000 == 0) {
+            System.out.println("That's a nice round number.");
         }
     }
 }
