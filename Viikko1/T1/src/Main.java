@@ -9,7 +9,7 @@ public class Main {
         System.out.println("Tervetuloa peliin! Arvaa luku väliltä 1-100.");
         int arvauksetMaksimi = 7;
         int arvaukset = 0;
-
+	
         System.out.println("Arvauksia jäljellä: " + (arvaukset + arvauksetMaksimi));
 
         do {
@@ -35,7 +35,8 @@ public class Main {
 
         if(arvaukset == arvauksetMaksimi){
             System.out.println("Hävisit pelin, oikea luku oli " + satunnainenLuku);
-
+	
         }
+	lukija.close();
     }
 }
