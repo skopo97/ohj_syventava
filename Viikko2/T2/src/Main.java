@@ -13,13 +13,12 @@ public class Main {
         }
         //Tehdään nykyhetkestä LocalDate olio
         LocalDate currentDate = LocalDate.now();
-
         LocalDate birthDate;
         try {
             //Yritetään tehdä annetusta stringistä LocalDate olio, jos ei onnistu niin tulostetaan virheilmoitus.
             birthDate = LocalDate.parse(birthDay);
             if (birthDate.getYear() < 1910 || birthDate.getYear() > currentDate.getYear()) {
-                System.out.println("Invalid year, please use year between 1910 and the current year");
+                System.out.println("Invalid year, please use a year between 1910 and the current year");
                 return;
             }
             if (birthDate.isAfter(currentDate)) {
@@ -30,7 +29,8 @@ public class Main {
             System.err.println("Invalid date or formatting for BIRTHDAY, please use a valid date");
             return;
         }
-        if (birthDate.getMonth() == currentDate.getMonth() && birthDate.getDayOfMonth() == currentDate.getDayOfMonth()) {
+        if (birthDate.getMonth() == currentDate.getMonth() &&
+                birthDate.getDayOfMonth() == currentDate.getDayOfMonth()) {
             System.out.println("Happy Birthday!");
         } else {
             System.out.println("Sorry, it's not your birthday yet");
