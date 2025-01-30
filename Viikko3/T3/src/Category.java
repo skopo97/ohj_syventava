@@ -2,7 +2,7 @@ public class Category {
     private String primary;
     private String secondary;
 
-    public Category(String primary) {
+    public Category(String primary , String secondary) {
         this.primary = primary;
         this.secondary = secondary;
     }
