@@ -13,8 +13,8 @@ public class Main {
                 new Event(LocalDate.of(2020,11,12), "macOS 11 Big Sur released", category),
         };
 
-        for (Event event : events) {
-            System.out.println(formatPrint(event));
+        for (Event e : events) {
+            System.out.println(formatPrint(e));
         }
 
         String[] operatingSystems = new String[events.length];
@@ -33,7 +33,9 @@ public class Main {
         String versionName = description.substring(9, description.indexOf(" released"));
         String dayOfWeek = event.getDate().getDayOfWeek().toString().toLowerCase();
         dayOfWeek = dayOfWeek.substring(0, 1).toUpperCase() + dayOfWeek.substring(1);
-        return "macOS " + versionNumber + " " + versionName + " was released on a " + dayOfWeek + ".";
+
+        Category category = event.getCategory();
+        return category.getSecondary() + " " + versionNumber + " " + versionName + " was released on a " + dayOfWeek + ".";
     }
 
     private static String getOsName(String description){
