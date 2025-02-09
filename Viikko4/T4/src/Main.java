@@ -6,39 +6,26 @@ import java.time.format.DateTimeParseException;
 public class Main {
     public static void main(String[] args) {
 
-        if(args.length < 2){
+        String inputDate = null;
+        String description = null;
+
+        if(args.length < 2 || args.length > 2){
             System.out.println("Provide 2 arguments: date in format --MM-dd and " +
                     "event description");
             System.exit(1);
-        }
-
-        String date = null;
-        String description = null;
-
-        //Luetaan komentoriviparametrit
-        try{
-            date = args[0];
+        }else{
+            inputDate = args[0];
             description = args[1];
-        }catch(ArrayIndexOutOfBoundsException e) {
-            System.out.println("Provide 2 arguments: date in format --MM-dd and " +
-                    "event description");
         }
 
         //Tarkistetaan, että päivämäärä on oikeassa muodossa
+        MonthDay mDay = null;
         try{
-            MonthDay mDay = MonthDay.parse(date, DateTimeFormatter.ofPattern("--MM-dd"));
-            System.out.println("Formatted date: " + date);
+            mDay = MonthDay.parse(inputDate, DateTimeFormatter.ofPattern("--MM-dd"));
 
         }catch(DateTimeParseException e){
             System.out.println("Invalid date, use format --MM-dd");
         }
-
-
-
-
-
-
-
 
 
         //Luodaan Category-olio
@@ -51,6 +38,19 @@ public class Main {
                 new Event(LocalDate.of(2021,10,25), "macOS 12 Monterey released", category),
                 new Event(LocalDate.of(2020,11,12), "macOS 11 Big Sur released", category),
         };
+
+        //Tulostetaan tapahtumat, jotka ovat samana päivänä kuin syötetty päivämäärä
+        boolean foundEvent = false;
+        for(Event e : events){
+            if(MonthDay.from(e.getDate()).equals(mDay)){
+                System.out.println(e.getDescription());
+                foundEvent = true;
+            }
+        }
+
+        if(!foundEvent){
+            System.out.println("No events found on this date");
+        }
 
     }
 }
